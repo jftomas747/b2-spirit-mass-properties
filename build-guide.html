@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-2 Spirit Composite Model | Build Guide</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <div class="brand">B-2 Spirit Composite Model</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Overview</a></li>
+          <li><a href="fabrication.html">Fabrication</a></li>
+          <li><a href="repair.html">Repair & Spares</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a class="active" href="build-guide.html">Build Guide</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-intro">
+    <h1>How to build the whole webpage</h1>
+    <p>A beginner-friendly file-by-file guide using plain HTML, CSS, images, and GitHub Pages.</p>
+  </div>
+
+  <main>
+    <section class="section">
+      <h2>Folder structure</h2>
+      <p>Create a project folder with this exact structure:</p>
+      <div class="code-block">b2-spirit-site/
+├── index.html
+├── fabrication.html
+├── repair.html
+├── gallery.html
+├── build-guide.html
+├── style.css
+├── B2_Spirit_Fabrication_Lab_Memo_Revised.docx
+└── assets/
+    ├── final-gloss.jpg
+    ├── layers-sketch.png
+    ├── matte-finish.jpg
+    ├── peel-ply-layer.jpg
+    ├── post-bottom-cleanup-1.jpg
+    ├── post-bottom-cleanup-2.jpg
+    ├── project-selfie.jpg
+    ├── repair-closeup.jpg
+    ├── repair-full.jpg
+    ├── two-models.jpg
+    ├── vacuum-blue-bag.jpg
+    └── vacuum-pump.jpg</div>
+    </section>
+
+    <section class="section">
+      <h2>Step 1: Make the files</h2>
+      <ol>
+        <li>Create a new folder on your computer.</li>
+        <li>Inside it, make an <strong>assets</strong> folder.</li>
+        <li>Create the five HTML files listed above.</li>
+        <li>Create one stylesheet named <strong>style.css</strong>.</li>
+        <li>Put all of your project JPG and PNG files inside the <strong>assets</strong> folder.</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>Step 2: Build the home page</h2>
+      <p>
+        Start with <strong>index.html</strong>. Every HTML page needs the same basic pieces: a head section, a title, a link to the CSS file, a header with navigation, and a main content area.
+      </p>
+      <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;B-2 Spirit Composite Model&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;...navigation...&lt;/header&gt;
+  &lt;main&gt;...content...&lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+      <p>
+        After the page skeleton works, add the hero image, overview paragraph, and acknowledgment section.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Step 3: Reuse the same navigation on every page</h2>
+      <p>
+        Copy the same navigation bar into every HTML file. The only thing you change is which link gets the <strong>active</strong> class.
+      </p>
+      <div class="code-block">&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="index.html"&gt;Overview&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="fabrication.html"&gt;Fabrication&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="repair.html"&gt;Repair &amp; Spares&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="gallery.html"&gt;Gallery&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="build-guide.html"&gt;Build Guide&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</div>
+    </section>
+
+    <section class="section">
+      <h2>Step 4: Add images correctly</h2>
+      <p>
+        Put every image in the assets folder and point to it with a relative path. For example:
+      </p>
+      <div class="code-block">&lt;img src="assets/final-gloss.jpg" alt="Completed glossy B-2 Spirit carbon fiber model"&gt;</div>
+      <p>
+        Keep the file names simple and do not use spaces. Hyphens are easier to manage.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Step 5: Style everything in one CSS file</h2>
+      <p>
+        Put all colors, spacing, fonts, image sizing, and layout rules inside <strong>style.css</strong>. That way, one edit changes the whole website.
+      </p>
+      <p>
+        This site uses one shared stylesheet so every page looks consistent.
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Step 6: Test locally</h2>
+      <ol>
+        <li>Double-click <strong>index.html</strong> and open it in your browser.</li>
+        <li>Click every navigation link and make sure every page loads.</li>
+        <li>Check whether every image appears.</li>
+        <li>Fix missing images by checking spelling and folder paths.</li>
+      </ol>
+    </section>
+
+    <section class="section">
+      <h2>Step 7: Upload to GitHub Pages</h2>
+      <ol>
+        <li>Create a new GitHub repository.</li>
+        <li>Upload the full website folder contents so that <strong>index.html</strong> is in the repository root.</li>
+        <li>Upload the <strong>assets</strong> folder too.</li>
+        <li>In repository settings, open the Pages section and publish from the main branch root folder.</li>
+        <li>Wait for GitHub to deploy the site, then open the provided website URL.</li>
+      </ol>
+      <div class="note">
+        GitHub Pages publishes static HTML, CSS, and JavaScript files directly from a repository, and you can configure it to publish from a specific branch and folder. citeturn634450search12turn634450search0
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Step 8: Keep improving it</h2>
+      <ul>
+        <li>Add more pages later, such as a references page or a lab-use page.</li>
+        <li>Add image captions for every photo.</li>
+        <li>Replace paragraphs with stronger writing when you want a more polished version.</li>
+        <li>When you edit files and push changes, GitHub Pages republishes the website from the source branch. citeturn634450search0turn634450search7</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Return to the <a href="index.html">overview page</a>.
+  </footer>
+</body>
+</html>
