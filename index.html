@@ -1,106 +1,938 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>B-2 Spirit Composite Model | Home</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B-2 Spirit Composite Model | Mechanical Vibrations Lab</title>
+  <meta
+    name="description"
+    content="Fabrication, finishing, repair, and spare production of a carbon fiber B-2 Spirit model for the Mechanical Vibrations Mass Properties Lab."
+  />
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --panel: #13171d;
+      --panel-2: #1a2028;
+      --text: #ecf0f6;
+      --muted: #b5c0cf;
+      --line: rgba(255,255,255,0.08);
+      --accent: #6ed0ff;
+      --accent-2: #f0b84b;
+      --shadow: 0 14px 40px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(110,208,255,0.12), transparent 28%),
+        radial-gradient(circle at top left, rgba(240,184,75,0.10), transparent 24%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(11,13,16,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .topbar-inner,
+    .hero,
+    .content,
+    .footer-inner {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      font-size: 0.95rem;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.6rem;
+    }
+
+    .nav a {
+      font-size: 0.92rem;
+      color: var(--muted);
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: white;
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-wrap {
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 4.5rem 0 3.5rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.45rem 0.8rem;
+      background: rgba(110,208,255,0.08);
+      border: 1px solid rgba(110,208,255,0.18);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 4vw, 4.1rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 1rem 0 0;
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.1rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent), #4cb0ff);
+      color: #05101a;
+    }
+
+    .button.secondary {
+      border-color: var(--line);
+      background: rgba(255,255,255,0.04);
+      color: white;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.025));
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      padding: 1rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card img {
+      border-radius: 16px;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .hero-card-caption {
+      margin-top: 0.9rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .content {
+      padding: 2rem 0 4rem;
+    }
+
+    .section-nav {
+      position: sticky;
+      top: 4.2rem;
+      z-index: 10;
+      margin: 0 0 1.5rem;
+      padding: 0.8rem;
+      background: rgba(19,23,29,0.78);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      overflow-x: auto;
+    }
+
+    .section-nav-inner {
+      display: flex;
+      gap: 0.75rem;
+      min-width: max-content;
+    }
+
+    .section-nav a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+
+    .section-nav a:hover {
+      color: white;
+      border-color: var(--line);
+      background: rgba(255,255,255,0.03);
+    }
+
+    section {
+      scroll-margin-top: 7rem;
+      margin-bottom: 1.7rem;
+      padding: 1.5rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      margin-bottom: 1rem;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: 0.73rem;
+      font-weight: 700;
+      color: var(--accent-2);
+      margin-bottom: 0.35rem;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.2vw, 2.25rem);
+      letter-spacing: -0.03em;
+    }
+
+    .lede {
+      color: var(--muted);
+      max-width: 72ch;
+      margin-top: 0.7rem;
+    }
+
+    .grid-3,
+    .grid-2,
+    .gallery-grid,
+    .mini-gallery {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .mini-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1rem; }
+
+    .card,
+    .stat,
+    .step {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1rem;
+    }
+
+    .stat-value {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label,
+    .muted,
+    figcaption,
+    .caption {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .step-number {
+      width: 88px;
+      height: 88px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(110,208,255,0.12), rgba(240,184,75,0.10));
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: white;
+    }
+
+    .step h3,
+    .card h3 {
+      margin: 0 0 0.4rem;
+      font-size: 1.12rem;
+      letter-spacing: -0.02em;
+    }
+
+    .step p,
+    .card p,
+    .callout p,
+    li {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .figure {
+      margin-top: 1rem;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #0a0d11;
+      cursor: zoom-in;
+    }
+
+    .figure img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .figure.tall img { aspect-ratio: 5 / 6; }
+    .figure.auto img { aspect-ratio: auto; }
+
+    figcaption {
+      padding: 0.85rem 1rem 1rem;
+      background: rgba(255,255,255,0.015);
+    }
+
+    .callout {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(110,208,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(110,208,255,0.18);
+    }
+
+    .bullet-list {
+      padding-left: 1.15rem;
+      margin: 0;
+    }
+
+    .bullet-list li + li {
+      margin-top: 0.55rem;
+    }
+
+    /* Special thanks section styled more like your screenshot */
+    .thanks-section {
+      padding-top: 1.7rem;
+      padding-bottom: 1.8rem;
+    }
+
+    .thanks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+      margin-top: 1.4rem;
+    }
+
+    .thanks-card {
+      background:
+        radial-gradient(circle at top center, rgba(255,255,255,0.03), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 24px;
+      padding: 1.45rem 1.45rem 1.6rem;
+      min-height: 300px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.28);
+    }
+
+    .thanks-card h3 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+
+    .thanks-role {
+      color: #69c8ff;
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .thanks-card p {
+      color: #eef3fb;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .footer-inner {
+      padding: 1.4rem 0 2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.86);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 2rem;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: min(1100px, 96vw);
+      max-height: 84vh;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      background: black;
+    }
+
+    .lightbox button {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      border: 0;
+      border-radius: 999px;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      background: rgba(255,255,255,0.16);
+      color: white;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid-3,
+      .gallery-grid,
+      .thanks-grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .step-number {
+        width: 72px;
+        height: 72px;
+      }
+
+      .thanks-card {
+        min-height: unset;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      section {
+        padding: 1.15rem;
+      }
+
+      .gallery-grid,
+      .mini-gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .thanks-card {
+        padding: 1.2rem;
+        border-radius: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="nav-wrap">
-      <div class="brand">B-2 Spirit Composite Model</div>
-      <nav>
-        <ul>
-          <li><a class="active" href="index.html">Overview</a></li>
-          <li><a href="fabrication.html">Fabrication</a></li>
-          <li><a href="repair.html">Repair & Spares</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          
-        </ul>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top">B-2 Spirit Composite Model</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a>
+        <a href="#background">Background</a>
+        <a href="#fabrication">Fabrication</a>
+        <a href="#repair">Repair</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#thanks">Thanks</a>
       </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-card hero-copy">
-      <div class="badges">
-        <span class="badge">Mechanical Vibrations Lab</span>
-        <span class="badge">Carbon Fiber Wet Layup</span>
-        <span class="badge">Mass Properties Equipment</span>
-      </div>
-      <h1>Fabrication, finishing, repair, and spare production of a carbon fiber B-2 Spirit model</h1>
-      <p class="lead">
-        This website summarizes the design and manufacturing work for an upgraded B-2 Spirit model used in the
-        Cal Poly Mechanical Vibrations Mass Properties laboratory. The older aircraft model was replaced by a larger
-        3.5-foot wingspan version built from a 3D printed PLA core and a carbon fiber outer shell.
-      </p>
-      <div class="button-row">
-        <a class="button primary" href="fabrication.html">See fabrication steps</a>
-        <a class="button" href="B2_Spirit_Fabrication_Lab_Memo_Revised.docx">Download memo</a>
-      </div>
-    </div>
-    <div class="hero-card hero-image">
-      <img src="assets/final-gloss.jpg" alt="Completed glossy B-2 Spirit carbon fiber model">
-    </div>
-  </section>
-
-  <main>
-    <section class="section">
-      <h2>Project overview</h2>
-      <p>
-        The main purpose of this project was to improve the aircraft-shaped object used in the mass properties lab.
-        The model had to be larger, stiffer, and better looking while still being practical for repeated student use.
-        The manufacturing process used a 3D printed PLA core, extensive sanding and surface preparation, carbon fiber wet layup,
-        vacuum bag curing, trimming, finish sanding, and a thin final epoxy coat.
-      </p>
-      <div class="kpi-grid">
-        <div class="kpi"><div class="value">3.5 ft</div><div class="label">New wingspan</div></div>
-        <div class="kpi"><div class="value">1:50</div><div class="label">Approx. aircraft scale</div></div>
-        <div class="kpi"><div class="value">3</div><div class="label">Models completed in Summer 2024</div></div>
-        <div class="kpi"><div class="value">2</div><div class="label">Additional spares in progress</div></div>
-      </div>
-    </section>
-
-    <section class="section grid-2">
+  <div class="hero-wrap" id="top">
+    <div class="hero">
       <div>
-        <h2>What this website includes</h2>
-        <ul>
-          <li>Fabrication steps from PLA core preparation through final gloss coating</li>
-          <li>Photos showing vacuum bagging, cleanup, surface prep, and final finish</li>
-          <li>Repair details for a damaged B-2 model used in student lab experiments</li>
-          <li>Information about spare-model production for the Mechanical Vibrations laboratory</li>
-        </ul>
+        <div class="eyebrow">Mechanical Vibrations Lab · Mass Properties Equipment Upgrade</div>
+        <h1>Fabrication, finishing, repair, and spare production of a carbon fiber B-2 Spirit model</h1>
+        <p>
+          This website summarizes the upgraded 3.5-foot B-2 Spirit model built for the Mechanical Vibrations Mass Properties Lab at Cal Poly. The project replaced an older 1-foot model with a larger 3D-printed PLA core and carbon fiber shell produced through wet layup, vacuum bagging, surface finishing, repair work, and continued spare-model production.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#fabrication">Explore the build process</a>
+          <a class="button secondary" href="B2_Spirit_Fabrication_Lab_Memo_Revised.docx" download>Download revised memo</a>
+        </div>
       </div>
-      <div class="figure">
-        <img src="assets/layers-sketch.png" alt="Hand sketch of vacuum bag stack for B-2 layup">
-        <div class="caption">Vacuum bagging stack sketch used during the layup process.</div>
+      <div class="hero-card">
+        <img src="assets/final-gloss.jpg" alt="Completed glossy carbon fiber B-2 Spirit model on a workbench" />
+        <div class="hero-card-caption">
+          Finished carbon fiber B-2 Spirit model after final surface work and epoxy sealing.
+        </div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="section grid-3">
-      <div class="figure">
-        <img src="assets/vacuum-pump.jpg" alt="Vacuum pump connected to the layup bag">
-        <div class="caption">Vacuum-assisted cure setup during composite fabrication.</div>
+  <main class="content">
+    <nav class="section-nav" aria-label="Section navigation">
+      <div class="section-nav-inner">
+        <a href="#overview">Project at a glance</a>
+        <a href="#background">Purpose</a>
+        <a href="#fabrication">Build process</a>
+        <a href="#results">Results</a>
+        <a href="#repair">Repair</a>
+        <a href="#spares">Spare models</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#thanks">Special thanks</a>
       </div>
-      <div class="figure">
-        <img src="assets/matte-finish.jpg" alt="Sanded matte finish before final epoxy seal coat">
-        <div class="caption">Sanded matte finish before the thin final epoxy coat.</div>
-      </div>
-      <div class="figure">
-        <img src="assets/repair-full.jpg" alt="Repaired B-2 Spirit model after repair was completed">
-        <div class="caption">Repaired model after crack closure, cosmetic blending, and sealing.</div>
-      </div>
-    </section>
+    </nav>
 
-    <section class="section">
-      <h2>Acknowledgments</h2>
-      <div class="section-kicker">Acknowledgment</div>
-        <h2>Special thanks</h2>
+    <section id="overview">
+      <div class="section-header">
+        <div class="section-kicker">Overview</div>
+        <h2>Project at a glance</h2>
         <p class="lede">
+          The upgraded B-2 Spirit model was designed to serve as a more useful and visible aircraft-shaped test object for mass properties demonstrations involving center of gravity, natural frequency, and mass-moment-of-inertia in the Mechanical Vibrations laboratory.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="stat">
+          <div class="stat-value">1 ft → 3.5 ft</div>
+          <div class="stat-label">
+            The older lab model was replaced with a much larger version that is easier to handle and demonstrate.
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">~1:50 scale</div>
+          <div class="stat-label">
+            The new B-2 Spirit model is close to a 1:50 scale representation of the actual aircraft.
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">3 built + 2 more</div>
+          <div class="stat-label">
+            Three models were completed during Summer 2024, and two additional spare models are being made for future lab use.
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-top:1rem;">
+        <div class="card">
+          <h3>Main materials and methods</h3>
+          <p>
+            3D-printed PLA core sections were joined with steel-infused glue, surface-prepped by sanding, and then wrapped in carbon fiber using wet layup and vacuum bagging. After cure, the model was trimmed, re-sanded, and sealed with a thin epoxy coat.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Why the upgrade mattered</h3>
+          <p>
+            The larger aircraft improves visibility during lab demonstrations and creates a better-looking and stiffer piece of equipment while still serving the same educational purpose in the mass properties experiment.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="background">
+      <div class="section-header">
+        <div class="section-kicker">Background</div>
+        <h2>Purpose of the model in the lab</h2>
+        <p class="lede">
+          In the Mass Properties experiment, irregularly shaped objects are used to help students connect physical geometry with center of gravity, natural frequency, and mass-moment-of-inertia. The B-2 model acts as one of those non-simple shapes, so this project focused on creating a stronger and more refined replacement for that lab equipment.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Design direction</h3>
+          <p>
+            A PLA core made the complex aircraft geometry practical to build, while the carbon fiber outer shell improved stiffness, appearance, and durability. Wet layup and vacuum bagging were chosen to pull the laminate more tightly against the model and reduce trapped air.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Build goals</h3>
+          <ul class="bullet-list">
+            <li>Create a larger, cleaner, and more realistic B-2 Spirit model for the lab.</li>
+            <li>Preserve the educational value of the original mass properties setup.</li>
+            <li>Develop a repeatable process for future spare-model production.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>
+          This site focuses on the manufacturing story: core preparation, composite layup, finishing, repair, and the follow-on work to keep the Mechanical Vibrations laboratory supplied with spare B-2 models.
+        </p>
+      </div>
+    </section>
+
+    <section id="fabrication">
+      <div class="section-header">
+        <div class="section-kicker">Fabrication</div>
+        <h2>How the model was built</h2>
+        <p class="lede">
+          The fabrication process was done in stages so the complex B-2 geometry could be controlled more carefully. One side was laid up and cured first, then trimmed and cleaned before the top side was prepared and finished.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <article class="step">
+          <div class="step-number">01</div>
+          <div>
+            <h3>PLA core assembly and surface prep</h3>
+            <p>
+              The 3D-printed PLA sections were aligned and bonded together using steel-infused glue. After assembly, the surface was sanded heavily to remove polygon-like print geometry and soften features that would otherwise show through the carbon fiber shell.
+            </p>
+            <figure class="figure auto" data-full="assets/layers-sketch.png">
+              <img src="assets/layers-sketch.png" alt="Hand sketch showing the vacuum bagging stack for the B-2 model layup" />
+              <figcaption>
+                Hand sketch of the vacuum bagging stack, including carbon fiber, release film, breather material, and vacuum bag layers.
+              </figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">02</div>
+          <div>
+            <h3>Material setup and wet layup</h3>
+            <p>
+              Carbon fiber was cut with extra margin around a rough B-2 outline. The vacuum sheet, peel ply, blue breathable release film, breather material, and gum tape were prepared first so the layup could be sealed quickly once the epoxy was worked into the fabric. A 1:4 hardener-to-epoxy ratio was used during the layup process.
+            </p>
+            <div class="mini-gallery">
+              <figure class="figure" data-full="assets/vacuum-blue-bag.jpg">
+                <img src="assets/vacuum-blue-bag.jpg" alt="B-2 model covered by blue vacuum bag material during layup" />
+                <figcaption>One side of the aircraft under vacuum bagging material during cure.</figcaption>
+              </figure>
+              <figure class="figure" data-full="assets/peel-ply-layer.jpg">
+                <img src="assets/peel-ply-layer.jpg" alt="Peel ply and bagging materials laid over the aircraft model" />
+                <figcaption>Peel ply and supporting bagging layers positioned over the model before sealing.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">03</div>
+          <div>
+            <h3>Vacuum cure and first-side completion</h3>
+            <p>
+              The bottom side of the model was laid up first. After the bag was sealed, the part was connected to the pump and left to cure for about 72 hours. The vacuum setup helped press the laminate tighter against the aircraft contours while reducing trapped air.
+            </p>
+            <figure class="figure" data-full="assets/vacuum-pump.jpg">
+              <img src="assets/vacuum-pump.jpg" alt="Vacuum pump attached to the bagged B-2 model on a heated table" />
+              <figcaption>The bagged assembly connected to the vacuum pump during cure.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">04</div>
+          <div>
+            <h3>Cleanup after the bottom side was finished</h3>
+            <p>
+              These next two images show an intermediate stage. The bottom side was already cured, but the top side did not have carbon fiber on yet. Stuck bagging material had to be trimmed away and the surface had to be cleaned before the next layup on the top side.
+            </p>
+            <div class="mini-gallery">
+              <figure class="figure" data-full="assets/post-bottom-cleanup-1.jpg">
+                <img src="assets/post-bottom-cleanup-1.jpg" alt="Model after the bottom side cure with stuck bagging material still attached" />
+                <figcaption>Intermediate stage after the bottom side cure, with stuck material still needing removal.</figcaption>
+              </figure>
+              <figure class="figure" data-full="assets/post-bottom-cleanup-2.jpg">
+                <img src="assets/post-bottom-cleanup-2.jpg" alt="Model cleaned and prepared for carbon fiber layup on the top side" />
+                <figcaption>Cleanup and trimming completed so the top side could be prepared for its carbon fiber layup.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">05</div>
+          <div>
+            <h3>Full sanding and matte finish stage</h3>
+            <p>
+              After both sides were laid up, the whole model was re-sanded to flatten resin buildup, smooth edges, and prepare the surface for the final thin sealing coat. At this stage the aircraft had a matte look, which was expected and part of the finishing process.
+            </p>
+            <figure class="figure" data-full="assets/matte-finish.jpg">
+              <img src="assets/matte-finish.jpg" alt="Sanded B-2 model with a matte finish before final epoxy coat" />
+              <figcaption>Sanded matte finish before the final thin epoxy coat was applied.</figcaption>
+            </figure>
+          </div>
+        </article>
+
+        <article class="step">
+          <div class="step-number">06</div>
+          <div>
+            <h3>Final thin epoxy coat and glossy finish</h3>
+            <p>
+              A thin final coat of the same epoxy system was applied after sanding. The goal was not to flood the surface, but to seal it lightly, bring out the carbon fiber weave, and create a cleaner finished appearance for lab use.
+            </p>
+            <figure class="figure" data-full="assets/final-gloss.jpg">
+              <img src="assets/final-gloss.jpg" alt="Completed carbon fiber B-2 model with glossy finish on a workbench" />
+              <figcaption>Completed B-2 Spirit model after final finishing and sealing.</figcaption>
+            </figure>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="section-header">
+        <div class="section-kicker">Results</div>
+        <h2>Main outcomes of the project</h2>
+        <p class="lede">
+          The project produced a larger, stiffer, and more refined aircraft model for the Mechanical Vibrations laboratory while also developing a process that could be repeated for future builds.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>Improved lab hardware</h3>
+          <p>
+            The upgraded 3.5-foot model replaced a much smaller aircraft and created a stronger visual presence for demonstrations and student interaction.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Composite finish quality</h3>
+          <p>
+            The final seal coat made the weave easier to see and gave the model a glossy surface that looked much more complete than the sanded intermediate state.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Repeatable process</h3>
+          <p>
+            By building multiple models, the layup, cleanup, sanding, and finishing sequence became much more repeatable for continued lab support.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout">
+        <p>
+          By the end of Summer 2024, three B-2 Spirit models had been completed. The success of those builds directly led to additional repair work and a request to create spare models for the laboratory.
+        </p>
+      </div>
+    </section>
+
+    <section id="repair">
+      <div class="section-header">
+        <div class="section-kicker">Repair</div>
+        <h2>Repairing a damaged B-2 model after lab use</h2>
+        <p class="lede">
+          One of the B-2 Spirit models was damaged during student lab experimentation. The repair process focused on restoring the split area cleanly enough that the damaged region would be hard to notice once the surface was blended and sealed.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Repair method</h3>
+          <ul class="bullet-list">
+            <li>Cyanoacrylate was injected into the split carbon fiber.</li>
+            <li>The damaged region was hand-clamped for about 10 minutes.</li>
+            <li>Aircraft-grade structural adhesive was added at the tip and allowed to cure.</li>
+            <li>Excess adhesive was sanded away before an acrylic paint touch-up was applied.</li>
+            <li>A thin 1:4 hardener-to-epoxy seal coat finished the repair.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Why this mattered</h3>
+          <p>
+            Because the model is handled during student experiments, durability and repairability matter almost as much as initial fabrication quality. This repair showed that the model could be restored and returned to lab use instead of being discarded.
+          </p>
+        </div>
+      </div>
+
+      <div class="mini-gallery">
+        <figure class="figure" data-full="assets/repair-closeup.jpg">
+          <img src="assets/repair-closeup.jpg" alt="Close-up of the repaired nose area on the B-2 model" />
+          <figcaption>Close-up of the repaired nose area after bonding, sanding, blending, and sealing.</figcaption>
+        </figure>
+        <figure class="figure" data-full="assets/repair-full.jpg">
+          <img src="assets/repair-full.jpg" alt="Full repaired B-2 model on workbench after restoration" />
+          <figcaption>Full view of the repaired B-2 Spirit model after the restoration work was completed.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="spares">
+      <div class="section-header">
+        <div class="section-kicker">Continuation</div>
+        <h2>Spare-model production for the Mechanical Vibrations lab</h2>
+        <p class="lede">
+          After the original set of models proved useful in the laboratory, Dr. Hemanth Porumamilla asked for spare B-2 Spirit models to be made for continued Mechanical Vibrations lab use. That request turned the project from a one-time build into an ongoing lab-support effort.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>What the spare builds show</h3>
+          <p>
+            The request for spares indicates that the upgraded model was successful enough to keep reproducing. It also shows that the fabrication process had become consistent enough to support more than a single finished part.
+          </p>
+        </div>
+        <div class="card">
+          <h3>Project continuation</h3>
+          <p>
+            In addition to the three completed Summer 2024 models, two more B-2 builds are being created using the same general composite process so the lab can keep backup models ready for future classes.
+          </p>
+        </div>
+      </div>
+
+      <figure class="figure" data-full="assets/two-models.jpg" style="margin-top:1rem;">
+        <img src="assets/two-models.jpg" alt="Two completed B-2 Spirit models displayed together on a workbench" />
+        <figcaption>Two completed B-2 Spirit models prepared for continued lab use and future spare-model support.</figcaption>
+      </figure>
+    </section>
+
+    <section id="gallery">
+      <div class="section-header">
+        <div class="section-kicker">Gallery</div>
+        <h2>Selected project photos</h2>
+        <p class="lede">
+          A quick visual summary of the build sequence, intermediate cleanup, final finish, and repair work.
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <figure class="figure" data-full="assets/project-selfie.jpg">
+          <img src="assets/project-selfie.jpg" alt="Project selfie with B-2 models and sanding materials" />
+          <figcaption>Project work in progress during the Summer 2024 build period.</figcaption>
+        </figure>
+        <figure class="figure" data-full="assets/final-gloss.jpg">
+          <img src="assets/final-gloss.jpg" alt="Finished B-2 Spirit model with glossy carbon fiber finish" />
+          <figcaption>Finished carbon fiber shell with the weave clearly visible.</figcaption>
+        </figure>
+        <figure class="figure" data-full="assets/repair-full.jpg">
+          <img src="assets/repair-full.jpg" alt="Full repaired B-2 Spirit model after restoration" />
+          <figcaption>Repaired model returned to a clean finished appearance.</figcaption>
+        </figure>
+      </div>
+
+      <div class="hero-actions" style="margin-top:1.2rem;">
+        <a class="button secondary" href="B2_Spirit_Fabrication_Lab_Memo_Revised.docx" download>Open revised memo</a>
+        <a
+          class="button secondary"
+          href="https://www.linkedin.com/posts/john-f-tomas_calpolyengineering-calpolymechanicalengineering-activity-7405005292553457664-iVJH?utm_source=share&utm_medium=member_desktop&rcm=ACoAAD9UJ3QBx8UnV5CKLwGNR-9RdJzGk0k2j6o"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          LinkedIn project post
+        </a>
+        <a
+          class="button secondary"
+          href="https://ceng.calpoly.edu/connection/2024/10/shop-talk/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Cal Poly Engineering feature
+        </a>
+      </div>
+    </section>
+
+    <section id="thanks" class="thanks-section">
+      <div class="section-header">
+        <div class="section-kicker">Acknowledgment</div>
+        <h2 style="font-size: clamp(2.4rem, 4vw, 4rem); line-height: 1.04;">Special thanks</h2>
+        <p class="lede" style="font-size: 1.05rem; max-width: 820px; margin-top: 1rem;">
           This project benefited from technical help, mentorship, and continued guidance from the people who supported the fabrication work and the Mechanical Vibrations lab effort.
         </p>
       </div>
+
       <div class="thanks-grid">
         <div class="thanks-card">
           <h3>Joel Thomas Arceneaux</h3>
@@ -109,6 +941,7 @@
             Special thanks for the assistance with 3D printing the B-2 Spirit model core used as the foundation for the composite layup work.
           </p>
         </div>
+
         <div class="thanks-card">
           <h3>Dr. Hemanth Porumamilla</h3>
           <div class="thanks-role">Mentorship and project continuation</div>
@@ -116,23 +949,63 @@
             Thank you for mentorship, guidance, and for supporting the continued development of the B-2 Spirit models, including the request to create spare models for the Mechanical Vibrations laboratory.
           </p>
         </div>
+
         <div class="thanks-card">
           <h3>Dr. Eltahry Elghandour</h3>
           <div class="thanks-role">Mentorship and lab guidance</div>
           <p>
-            Thank you for guidance and support throughout the broader Mass Properties and Mechanical Vibrations lab context that helped shape this project.
+            Thank you for teaching me so much about composite materials, for always advocating for me, and for always pushing me to aim higher throughout this project.
           </p>
-            <p>
-    I was also featured by Cal Poly Engineering for this work.
-    <a href="https://ceng.calpoly.edu/connection/2024/10/shop-talk/" target="_blank" rel="noopener noreferrer">
-      Read the feature here
-    </a>.
-      </p>
+        </div>
+      </div>
     </section>
   </main>
 
-  <footer>
-    Built from the B-2 Spirit fabrication memo and project photo set.
+  <footer class="footer">
+    <div class="footer-inner">
+      Built from the revised B-2 Spirit fabrication memo and project photos for web presentation and portfolio use.
+    </div>
   </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button type="button" id="lightbox-close" aria-label="Close image viewer">×</button>
+    <img id="lightbox-image" alt="Expanded project image" />
+  </div>
+
+  <script>
+    const figures = document.querySelectorAll("[data-full]");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+    const closeButton = document.getElementById("lightbox-close");
+
+    figures.forEach((figure) => {
+      figure.addEventListener("click", () => {
+        const full = figure.getAttribute("data-full");
+        lightboxImage.src = full;
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("open");
+      lightbox.setAttribute("aria-hidden", "true");
+      lightboxImage.src = "";
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
 </body>
 </html>
