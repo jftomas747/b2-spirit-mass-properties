@@ -243,12 +243,99 @@ footer {
   font-size: 0.95rem;
 }
 
+/* ===== Acknowledgment section only ===== */
+
+.thanks-section {
+  padding-top: 28px;
+  padding-bottom: 30px;
+}
+
+.thanks-section .section-kicker,
+.thanks-section .eyebrow,
+.thanks-section .kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffc94d;
+  margin-bottom: 14px;
+}
+
+.thanks-section h2,
+.thanks-section .big-title {
+  font-size: clamp(2.8rem, 5vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+  margin: 0 0 22px;
+  color: #f3f6fb;
+}
+
+.thanks-section > p,
+.thanks-section .lede,
+.thanks-section .section-lead {
+  max-width: 860px;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #c9d3e3;
+  margin: 0 0 26px;
+}
+
+.thanks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 10px;
+}
+
+.thanks-card {
+  background:
+    radial-gradient(circle at top center, rgba(255,255,255,0.035), transparent 58%),
+    linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 26px;
+  padding: 26px 26px 28px;
+  min-height: 430px;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.24);
+}
+
+.thanks-card h3 {
+  margin: 0 0 22px;
+  font-size: clamp(1.65rem, 2.3vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.thanks-role {
+  color: #74c8ff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.45;
+  margin-bottom: 24px;
+}
+
+.thanks-card p {
+  margin: 0;
+  color: #eef3fb;
+  font-size: 1.04rem;
+  line-height: 1.85;
+}
+
 @media (max-width: 900px) {
   .hero, .grid-2, .grid-3, .gallery-grid, .kpi-grid {
     grid-template-columns: 1fr;
   }
+
   .nav-wrap {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .thanks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .thanks-card {
+    min-height: unset;
   }
 }
