@@ -19,7 +19,7 @@
       color: #e9edf5;
     }
 
-    .index-page .topbar {
+    .index-page .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
@@ -28,14 +28,14 @@
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    .index-page .topbar-inner,
+    .index-page .nav-wrap,
     .index-page .hero-shell,
     .index-page .home-main {
       width: min(1180px, calc(100% - 2rem));
       margin: 0 auto;
     }
 
-    .index-page .topbar-inner {
+    .index-page .nav-wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -52,14 +52,18 @@
       text-decoration: none;
     }
 
-    .index-page .nav {
+    .index-page nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
       gap: 0.6rem;
     }
 
-    .index-page .nav a {
+    .index-page nav a {
+      display: inline-block;
       font-size: 0.92rem;
       color: #aab3c5;
       padding: 0.45rem 0.75rem;
@@ -69,8 +73,8 @@
       transition: 0.2s ease;
     }
 
-    .index-page .nav a.active,
-    .index-page .nav a:hover {
+    .index-page nav a.active,
+    .index-page nav a:hover {
       color: #ffffff;
       background: rgba(255,255,255,0.05);
       border-color: rgba(255,255,255,0.08);
@@ -82,39 +86,41 @@
     }
 
     .index-page .hero-shell {
-    padding: 2.5rem 0 1.8rem;
+      padding: 2.5rem 0 1.8rem;
     }
 
     .index-page .hero {
-    display: grid;
-    grid-template-columns: minmax(560px, 0.95fr) minmax(380px, 0.85fr);
-    gap: 3rem;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    max-width: none;
+      display: grid;
+      grid-template-columns: minmax(560px, 0.95fr) minmax(380px, 0.85fr);
+      gap: 3rem;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+      max-width: none;
+    }
+
+    .index-page .hero-copy {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
     }
 
     .index-page .hero-copy h1 {
-    font-size: clamp(1.55rem, 3.25vw, 3.05rem);
-    line-height: 1.04;
-    letter-spacing: -0.045em;
-    margin: 0 0 1rem;
-    color: #f3f6fb;
-    max-width: 12.5ch;
+      font-size: clamp(1.4rem, 2.9vw, 2.7rem);
+      line-height: 1.04;
+      letter-spacing: -0.045em;
+      margin: 0 0 1rem;
+      color: #f3f6fb;
+      max-width: 12.5ch;
     }
 
     .index-page .hero-copy p.lead {
-    font-size: 0.98rem;
-    line-height: 1.75;
-    color: #c9d3e3;
-    margin: 0;
-    max-width: 56ch;
-    }
-
-    .index-page .hero-card {
-    max-width: 600px;
-    margin-left: auto;
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #c9d3e3;
+      margin: 0;
+      max-width: 56ch;
     }
 
     .index-page .hero-actions,
@@ -154,6 +160,8 @@
     }
 
     .index-page .hero-card {
+      max-width: 600px;
+      margin-left: auto;
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
@@ -359,10 +367,15 @@
       .index-page .hero-copy h1 {
         max-width: none;
       }
+
+      .index-page .hero-card {
+        max-width: none;
+        margin-left: 0;
+      }
     }
 
     @media (max-width: 720px) {
-      .index-page .topbar-inner {
+      .index-page .nav-wrap {
         align-items: flex-start;
         flex-direction: column;
       }
@@ -378,15 +391,17 @@
   </style>
 </head>
 <body class="index-page">
-  <header class="topbar">
-    <div class="topbar-inner">
+  <header class="site-header">
+    <div class="nav-wrap">
       <a class="brand" href="index.html">B-2 Spirit Composite Model</a>
-      <nav class="nav" aria-label="Main navigation">
-        <a class="active" href="index.html">Home</a>
-        <a href="fabrication.html">Fabrication</a>
-        <a href="repair.html">Repair</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="acknowledgments.html">Acknowledgments</a>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a class="active" href="index.html">Home</a></li>
+          <li><a href="fabrication.html">Fabrication</a></li>
+          <li><a href="repair.html">Repair</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="acknowledgments.html">Acknowledgments</a></li>
+        </ul>
       </nav>
     </div>
   </header>
